@@ -64,7 +64,6 @@ class Workers extends React.Component {
         let workers = filterUsersByWorkers(people);
         workers = filterByFields(workers, this.state.search);
         let firstId = getIdFromEntity(workers[0]);
-        console.log(firstId);
 
         return (
             <div className={classes.root}>
