@@ -1,4 +1,4 @@
-## People Management Dashboard for Roger's Landscaping Service 
+## Business Dashboard for Roger's Landscaping Service 
 
 ## Development
 
