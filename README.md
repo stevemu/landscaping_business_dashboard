@@ -28,7 +28,7 @@ After=syslog.target
 
 [Service]
 User=root
-ExecStart=/root/people_management_dashboard/build/libs/landscaping-people-management-dashboard-1.0-SNAPSHOT.jar
+ExecStart=/root/landscaping_business_dashboard/build/libs/landscaping_business_dashboard-1.0-SNAPSHOT.jar
 SuccessExitStatus=143
 
 [Install]
@@ -45,5 +45,5 @@ cd ..
 gradle bootJar
 systemctl restart people-management.service
 // or run manually
-./build/libs/landscaping-people-management-dashboard-1.0-SNAPSHOT.jar
+./build/libs/landscaping_business_dashboard-1.0-SNAPSHOT.jar
 ```
