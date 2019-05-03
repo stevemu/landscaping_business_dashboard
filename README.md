@@ -66,5 +66,5 @@ use ssh to create an tunnel to manage the postgres
 
 ```aidl
 ssh -f root@stevemu.com -L 5431:localhost:5432 -N
-ssh -f root@prod.stevemu.com -L 5431:localhost:5432 -N
+ssh -f root@prod.stevemu.com -L 5430:localhost:5432 -N
 ```
