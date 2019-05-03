@@ -36,6 +36,16 @@ SuccessExitStatus=143
 WantedBy=multi-user.target
 ```
 
+install postgres 11 on ubuntu, on port 5432, create the database landscaping_people and run as a service, username and password are postgres
+https://computingforgeeks.com/install-postgresql-11-on-ubuntu-18-04-ubuntu-16-04/
+
+```aidl
+
+sudo -u postgres psql
+ALTER USER postgres PASSWORD 'postgres';
+createdb landscaping_people
+```
+
 then build:
 
 ```$xslt
@@ -48,4 +58,13 @@ gradle bootJar
 systemctl restart people-management.service
 // or run manually
 ./build/libs/landscaping_business_dashboard-1.0-SNAPSHOT.jar
+```
+
+## Database management:
+
+use ssh to create an tunnel to manage the postgres
+
+```aidl
+ssh -f root@stevemu.com -L 5431:localhost:5432 -N
+ssh -f root@prod.stevemu.com -L 5431:localhost:5432 -N
 ```
