@@ -1,14 +1,10 @@
 ## People Management Dashboard for Roger's Landscaping Service 
 
-staging server: https://landscaping-business-dashboard.stevemu.com/
-
-Run postgres on mac:
-
-`pg_ctl -D /usr/local/var/postgres start`
-
-Development
+## Development
 
 ```$xslt
+// Run postgres on mac
+pg_ctl -D /usr/local/var/postgres start
 cd frontend
 npm start
 // then start the spring boot backend
