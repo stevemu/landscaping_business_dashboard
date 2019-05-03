@@ -35,6 +35,11 @@ class Customer extends React.Component {
         let id = this.props.match.params.id;
         let person = getPersonById(id);
 
+        if (!person) {
+            return <div>Loading...</div>
+        }
+
+
         return (
             <div>
                 <FirstNameTextField
@@ -60,8 +65,8 @@ class Customer extends React.Component {
                     Update
                 </StyledButton>
                 <StyledButton variant="contained" className={classes.button} onClick={async () => {
-                    this.props.history.push(customersPath);
                     await handleDeletePerson(id);
+                    this.props.history.push(customersPath);
                 }}>Delete</StyledButton>
             </div>
         )

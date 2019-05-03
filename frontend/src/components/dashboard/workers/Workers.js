@@ -64,6 +64,7 @@ class Workers extends React.Component {
         let workers = filterUsersByWorkers(people);
         workers = filterByFields(workers, this.state.search);
         let firstId = getIdFromEntity(workers[0]);
+        console.log(firstId);
 
         return (
             <div className={classes.root}>
@@ -106,9 +107,9 @@ class Workers extends React.Component {
                                 <NewWorker {...props} />
                             )}
                         />
-                        <Route exact path={`${this.props.match.path}`} render={() => {
+                        {firstId && <Route exact path={`${this.props.match.path}`} render={() => {
                             return <Redirect to={`${this.props.match.path}/${firstId}`} />
-                        }}/>
+                        }}/>}
 
                     </div>}
                 </div>

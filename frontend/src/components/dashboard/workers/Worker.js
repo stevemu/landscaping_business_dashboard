@@ -41,6 +41,9 @@ class Worker extends React.Component {
 
         let id = this.props.match.params.id;
         let person = getPersonById(id);
+        if (!person) {
+            return <div>Loading...</div>
+        }
 
         return (
             <div>
@@ -67,8 +70,8 @@ class Worker extends React.Component {
                     Update
                 </StyledButton>
                 <StyledButton variant="contained" className={classes.button} onClick={async () => {
-                    this.props.history.push(workersPath);
                     await handleDeletePerson(id);
+                    this.props.history.push(workersPath);
                 }}>Delete</StyledButton>
             </div>
         )

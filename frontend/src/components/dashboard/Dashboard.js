@@ -135,13 +135,12 @@ class Dashboard extends Component {
     };
 
     async componentDidMount() {
-        // console.log('in here');
 
         try {
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
             // console.log(e);
-            logout();
+            // logout();
         }
 
     }
@@ -152,7 +151,7 @@ class Dashboard extends Component {
             people = people._embedded.users;
             return people;
         } catch (e) {
-            logout();
+            // logout();
 
         }
 
@@ -163,7 +162,7 @@ class Dashboard extends Component {
             let people = await this.getPeopleFromApi();
             this.setState({people});
         } catch (e) {
-            logout();
+            // logout();
 
         }
 
@@ -175,7 +174,7 @@ class Dashboard extends Component {
             await deleteAuthed("/api/users/" + id);
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
-            logout();
+            // logout();
 
         }
 
@@ -195,7 +194,7 @@ class Dashboard extends Component {
 
             this.setState({people});
         } catch (e) {
-            logout();
+            // logout();
 
         }
 
@@ -206,7 +205,7 @@ class Dashboard extends Component {
             let res = await postAuthed("/api/users/", personData);
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
-            logout();
+            // logout();
         }
 
     };

@@ -113,9 +113,9 @@ class Customers extends React.Component {
                             )}
                         />
 
-                        <Route exact path={`${this.props.match.path}`} render={() => {
+                        {firstId && <Route exact path={`${this.props.match.path}`} render={() => {
                             return <Redirect to={`${this.props.match.path}/${firstId}`} />
-                        }}/>
+                        }}/>}
 
                     </div>}
                 </div>
