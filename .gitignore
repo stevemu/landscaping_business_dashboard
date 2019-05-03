@@ -152,5 +152,3 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
-
-DatabaseLoader.java

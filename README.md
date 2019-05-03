@@ -38,6 +38,7 @@ WantedBy=multi-user.target
 then build:
 
 ```$xslt
+create src/main/resources/static folder
 cd frontend
 npm i
 npm run build
