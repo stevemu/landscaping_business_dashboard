@@ -19,11 +19,11 @@ Deploy:
 
 On ubuntu:
 
-create `people-management.service` in /etc/systemd/system:
+create `landscaping_business_dashboard.service` in /etc/systemd/system:
 
 ```$xslt
 [Unit]
-Description=people-management
+Description=landscaping_business_dashboard.service
 After=syslog.target
 
 [Service]

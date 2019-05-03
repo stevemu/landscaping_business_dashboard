@@ -141,6 +141,7 @@ export const getLocalToken = () => {
 
 export const removeLocalToken = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
 };
 
 export const getLastSegmentFromUrl = (url) => {
