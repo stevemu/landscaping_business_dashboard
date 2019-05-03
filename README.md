@@ -14,10 +14,15 @@ npm start
 // then start the spring boot backend
 ```
 
+## Branching
 
-Deploy:
+`dev` is the main development branch. Code in this branch are deployed to the staging server for internal reviewing/testing. Staging server is at https://people-management-dashboard.stevemu.com
 
-On ubuntu:
+
+`master` is the production branch. Once code is tested and approved on staging server, code in this branch are deployed to production. Production server is at https://people-management-dashboard-prod.stevemu.com
+
+
+## Deploying On ubuntu:
 
 create `landscaping_business_dashboard.service` in /etc/systemd/system:
 
