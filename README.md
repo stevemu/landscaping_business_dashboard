@@ -12,13 +12,13 @@ npm start
 
 ## Branching
 
-`dev` is the main development branch. Code in this branch are deployed to the staging server for internal reviewing/testing. Staging server is at https://people-management-dashboard.stevemu.com
+`dev` is the main development branch. Code in this branch are deployed to the staging server for internal reviewing/testing. Staging server is at https://landscaping-business-dashboard.stevemu.com
 
 
-`master` is the production branch. Once code is tested and approved on staging server, code in this branch are deployed to production. Production server is at https://people-management-dashboard-prod.stevemu.com
+`master` is the production branch. Once code is tested and approved on staging server, code in this branch are deployed to production. Production server is at https://business-dashboard-prod.stevemu.com
 
 
-## Deploying On ubuntu:
+## Deploying On Ubuntu 18/16:
 
 create `landscaping_business_dashboard.service` in /etc/systemd/system:
 
@@ -36,7 +36,7 @@ SuccessExitStatus=143
 WantedBy=multi-user.target
 ```
 
-install postgres 11 on ubuntu, on port 5432, create the database landscaping_people and run as a service, username and password are postgres
+Install postgres 11 on ubuntu, on port 5432, create the database landscaping_people and run as a service, username and password are postgres
 https://computingforgeeks.com/install-postgresql-11-on-ubuntu-18-04-ubuntu-16-04/
 
 ```aidl
@@ -55,7 +55,7 @@ npm i
 npm run build
 cd ..
 gradle bootJar
-systemctl restart people-management.service
+systemctl restart landscaping_business_dashboard.service
 // or run manually
 ./build/libs/landscaping_business_dashboard-1.0-SNAPSHOT.jar
 ```
