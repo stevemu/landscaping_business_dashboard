@@ -1,12 +1,12 @@
 import React from 'react';
 
-function withResizeAware(WrappedComponent, heightReduce) {
+function withResizeAware(WrappedComponent) {
     return class extends React.Component {
 
         constructor(props) {
             super(props);
             this.state = {
-                height: document.documentElement.clientHeight - heightReduce,
+                height: document.documentElement.clientHeight,
                 width: document.documentElement.clientWidth
             }
         }
@@ -21,7 +21,7 @@ function withResizeAware(WrappedComponent, heightReduce) {
 
         handleResize = (e) => {
             this.setState({
-                height: document.documentElement.clientHeight - heightReduce,
+                height: document.documentElement.clientHeight,
                 width: document.documentElement.clientWidth
             })
         }

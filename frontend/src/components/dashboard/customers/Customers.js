@@ -74,7 +74,7 @@ class Customers extends React.Component {
         return (
             <div className={classes.root}>
                 <div className={classes.container} style={{
-                    height: this.props.height,
+                    height: this.props.height - 120,
                     gridTemplateColumns: this.props.width >= 600 ? "200px 1fr" : "1fr",
 
                 }}>
@@ -128,5 +128,5 @@ class Customers extends React.Component {
 }
 
 
-export default withPeopleContext(withResizeAware(withStyles(styles)(Customers), 120));
+export default withPeopleContext(withResizeAware(withStyles(styles)(Customers)));
 

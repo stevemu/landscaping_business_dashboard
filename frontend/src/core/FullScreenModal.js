@@ -13,6 +13,7 @@ const styles = theme => ({
         outline: 'none',
         display: "flex",
         flexDirection: "column",
+        // overflow: "scroll"
         // backgroundColor: "red"
     }
 });

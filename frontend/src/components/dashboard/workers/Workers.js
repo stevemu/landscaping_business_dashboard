@@ -29,17 +29,18 @@ const styles = {
     container: {
         display: "grid",
         gridTemplateColumns: "1fr",
-        overflow: "scroll",
+        overflow: "hidden",
         // backgroundColor: "yellow"
     },
     left: {
         overflow: "scroll",
-        paddingRight: 5,
-        marginRight: 5
-        // backgroundColor: "red"
+        // paddingRight: 5,
+        marginRight: 5,
+        // backgroundColor: "red",
+        paddingBottom: 150
     },
     right: {
-        overflow: "scroll",
+        // overflow: "scroll",
     },
     textField: {
         width: "100%"
@@ -65,14 +66,20 @@ class Workers extends React.Component {
         workers = filterByFields(workers, this.state.search);
         let firstId = getIdFromEntity(workers[0]);
 
+        let containerHeight = this.props.height - 120;
+        let leftHeight = this.props.height;
+        let rightHeight = this.props.height;
+
         return (
             <div className={classes.root}>
                 <div className={classes.container} style={{
-                    height: this.props.height,
+                    height: containerHeight,
+                    // backgroundColor: "grey",
                     gridTemplateColumns: this.props.width >= 600 ? "200px 1fr" : "1fr",
-
                 }}>
-                    <div className={classes.left} style={{height: this.props.height}}>
+                    <div className={classes.left} style={{
+                        // height: leftHeight
+                    }}>
                         <Button onClick={() => {
                             this.props.history.push(`${this.props.match.path}/new`)
                         }}>Create Worker</Button>
@@ -91,7 +98,9 @@ class Workers extends React.Component {
                             <NameCards {...this.props} people={workers} />
                         </nav>
                     </div>
-                    {this.props.width >= 600 && <div className={classes.right} style={{height: this.props.height}}>
+                    {this.props.width >= 600 && <div className={classes.right} style={{
+                        // height: rightHeight
+                    }}>
                         <Route
                             path={`${this.props.match.path}/:id([0-9]+)`}
                             exact
@@ -121,5 +130,5 @@ class Workers extends React.Component {
 }
 
 
-export default withPeopleContext(withResizeAware(withStyles(styles)(Workers), 120));
+export default withPeopleContext(withResizeAware(withStyles(styles)(Workers)));
 

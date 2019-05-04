@@ -11,12 +11,13 @@ import Chat from "../core/chat/Chat";
 const styles = theme => ({
     root: {
         backgroundColor: theme.palette.background.paper,
+        scroll: "hidden"
     }
 });
 
 function TabContainer({ children, dir }) {
     return (
-        <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+        <Typography component="div" dir={dir} style={{ padding: 8 * 3, height: window.innerHeight - 160 }}>
             {children}
         </Typography>
     );
@@ -25,7 +26,7 @@ function TabContainer({ children, dir }) {
 
 class Worker extends React.Component {
     state = {
-        value: 0,
+        value: 1,
     };
 
     handleChange = (event, value) => {
