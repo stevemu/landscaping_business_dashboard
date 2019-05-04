@@ -24,7 +24,7 @@ function TabContainer({ children, dir }) {
 }
 
 
-class Worker extends React.Component {
+class Person extends React.Component {
     state = {
         value: 1,
     };
@@ -75,4 +75,4 @@ class Worker extends React.Component {
 
 }
 
-export default withStyles(styles, { withTheme: true })(Worker);
+export default withStyles(styles, { withTheme: true })(Person);

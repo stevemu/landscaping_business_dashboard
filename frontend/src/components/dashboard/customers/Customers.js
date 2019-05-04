@@ -35,17 +35,15 @@ const styles = {
     container: {
         display: "grid",
         gridTemplateColumns: "1fr",
-        overflow: "scroll",
-        // backgroundColor: "yellow"
+        overflow: "hidden",
     },
     left: {
         overflow: "scroll",
-        paddingRight: 5,
-        marginRight: 5
-        // backgroundColor: "red"
+        marginRight: 5,
+        paddingBottom: 150
     },
     right: {
-        overflow: "scroll",
+        // overflow: "scroll",
     },
     textField: {
         width: "100%"
@@ -71,14 +69,16 @@ class Customers extends React.Component {
         customers = filterByFields(customers, this.state.search);
         let firstId = getIdFromEntity(customers[0]);
 
+        let containerHeight = this.props.height - 120;
+
         return (
             <div className={classes.root}>
                 <div className={classes.container} style={{
-                    height: this.props.height - 120,
+                    height: containerHeight,
                     gridTemplateColumns: this.props.width >= 600 ? "200px 1fr" : "1fr",
 
                 }}>
-                    <div className={classes.left} style={{height: this.props.height}}>
+                    <div className={classes.left}>
                         <Button onClick={() => {
                             this.props.history.push(`${this.props.match.path}/new`)
                         }}>Create Customer</Button>
@@ -97,7 +97,7 @@ class Customers extends React.Component {
                             <NameCards {...this.props} people={customers} />
                         </nav>
                     </div>
-                    {this.props.width >= 600 && <div className={classes.right} style={{height: this.props.height}}>
+                    {this.props.width >= 600 && <div className={classes.right}>
                         <Route
                             path={`${this.props.match.path}/:id([0-9]+)`}
                             exact

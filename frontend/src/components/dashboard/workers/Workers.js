@@ -30,13 +30,10 @@ const styles = {
         display: "grid",
         gridTemplateColumns: "1fr",
         overflow: "hidden",
-        // backgroundColor: "yellow"
     },
     left: {
         overflow: "scroll",
-        // paddingRight: 5,
         marginRight: 5,
-        // backgroundColor: "red",
         paddingBottom: 150
     },
     right: {
