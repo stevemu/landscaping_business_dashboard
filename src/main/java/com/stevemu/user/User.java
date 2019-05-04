@@ -29,10 +29,13 @@ public class User implements UserDetails {
     Long id;
 
     @JsonIgnore
+    @Column(unique = true)
     private String username;
 
     @JsonIgnore
     private String password;
+
+    private String phone;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
@@ -45,7 +48,7 @@ public class User implements UserDetails {
 
     private String firstName;
     private String lastName;
-//    private String address;
+    private Integer rating;
 
 
     @Override

@@ -147,7 +147,7 @@ class Dashboard extends Component {
 
     getPeopleFromApi = async () => {
         try {
-            let people = await getAuthed("/api/users/search/findAllByOrderByRolesAscFirstNameAsc");
+            let people = await getAuthed("/api/users/search/findAllByOrderByRatingDesc");
             people = people._embedded.users;
             return people;
         } catch (e) {

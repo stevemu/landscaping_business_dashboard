@@ -19,7 +19,7 @@ const styles = {
 
 function NameCard(props) {
     const {classes, person} = props;
-    let {firstName, lastName} = person;
+    let {firstName, lastName, phone} = person;
 
     return (
         <Card className={classes.card} onClick={props.onClick}>
@@ -28,7 +28,7 @@ function NameCard(props) {
                     {firstName} {lastName}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    123-456-1111
+                    {phone}
                 </Typography>
             </CardContent>
         </Card>

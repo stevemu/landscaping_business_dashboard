@@ -12,10 +12,10 @@ npm start
 
 ## Branching
 
-`dev` is the main development branch. Code in this branch are deployed to the staging server for internal reviewing/testing. Staging server is at https://landscaping-business-dashboard.stevemu.com
+`dev` is the main development branch. Code in this branch are deployed to the staging server for internal reviewing/testing. Staging server is at https://staging-business-dashboard.stevemu.com
 
 
-`master` is the production branch. Once code is tested and approved on staging server, code in this branch are deployed to production. Production server is at https://business-dashboard-prod.stevemu.com
+`master` is the production branch. Once code is tested and approved on staging server, code in this branch are deployed to production. Production server is at https://prod-business-dashboard.stevemu.com
 
 
 ## Deploying On Ubuntu 18/16:

@@ -33,6 +33,10 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        createUsers();
+    }
+
+    public void createUsers() {
         List<User> users = Arrays.asList(
                 User.builder()
                         .username("s")
@@ -49,10 +53,13 @@ public class DatabaseLoader implements CommandLineRunner {
                         .roles(Arrays.asList("ROLE_ADMIN"))
                         .build(),
 
+                // workers
                 User.builder()
                         .username("johndoe")
-                        .firstName("John")
-                        .lastName("Doe")
+                        .firstName("John1")
+                        .lastName("Doe1")
+                        .phone("7188641267")
+                        .rating(5)
                         .password(this.passwordEncoder.encode("password"))
                         .roles(Arrays.asList("ROLE_WORKER"))
                         .build(),
@@ -60,6 +67,7 @@ public class DatabaseLoader implements CommandLineRunner {
                         .username("johndoe2")
                         .firstName("Aramb")
                         .lastName("Doe")
+                        .rating(3)
                         .password(this.passwordEncoder.encode("password"))
                         .roles(Arrays.asList("ROLE_WORKER"))
                         .build(),
@@ -67,10 +75,12 @@ public class DatabaseLoader implements CommandLineRunner {
                         .username("johndoe3")
                         .firstName("Zeoo")
                         .lastName("Doe")
+                        .rating(0)
                         .password(this.passwordEncoder.encode("password"))
                         .roles(Arrays.asList("ROLE_WORKER"))
                         .build(),
 
+                // customers
                 User.builder()
                         .username("janedoe")
                         .firstName("Jane1")
