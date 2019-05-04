@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
 import PersonDetail from "../core/PersonDetail";
-import Chat from "../core/chat/Chat";
+import ChatComponent from "../core/chat/ChatComponent";
 
 const styles = theme => ({
     root: {
@@ -64,7 +64,7 @@ class Person extends React.Component {
                         />
                     </TabContainer>
                     <TabContainer dir={theme.direction}>
-                        <Chat />
+                        <ChatComponent />
                     </TabContainer>
                 </SwipeableViews>
             </div>
