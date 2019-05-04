@@ -26,7 +26,7 @@ function TabContainer({ children, dir }) {
 
 class Person extends React.Component {
     state = {
-        value: 1,
+        value: 0,
     };
 
     handleChange = (event, value) => {

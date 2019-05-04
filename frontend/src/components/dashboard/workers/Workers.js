@@ -20,25 +20,9 @@ import {
     filterByFields
 } from "../../../core/utils";
 import withPeopleContext from "../../../core/withPeopleContext";
+import MasterDetail from '../core/MasterDetail';
 
 const styles = {
-    root: {
-        flex: 1,
-        padding: 10
-    },
-    container: {
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        overflow: "hidden",
-    },
-    left: {
-        overflow: "scroll",
-        marginRight: 5,
-        paddingBottom: 150
-    },
-    right: {
-        // overflow: "scroll",
-    },
     textField: {
         width: "100%"
     }
@@ -63,20 +47,11 @@ class Workers extends React.Component {
         workers = filterByFields(workers, this.state.search);
         let firstId = getIdFromEntity(workers[0]);
 
-        let containerHeight = this.props.height - 120;
-        let leftHeight = this.props.height;
-        let rightHeight = this.props.height;
-
         return (
-            <div className={classes.root}>
-                <div className={classes.container} style={{
-                    height: containerHeight,
-                    // backgroundColor: "grey",
-                    gridTemplateColumns: this.props.width >= 600 ? "200px 1fr" : "1fr",
-                }}>
-                    <div className={classes.left} style={{
-                        // height: leftHeight
-                    }}>
+            <MasterDetail
+                {...this.props}
+                master={() => (
+                    <div>
                         <Button onClick={() => {
                             this.props.history.push(`${this.props.match.path}/new`)
                         }}>Create Worker</Button>
@@ -92,12 +67,13 @@ class Workers extends React.Component {
                             margin="normal"
                         />
                         <nav>
-                            <NameCards {...this.props} people={workers} />
+                            <NameCards {...this.props} people={workers}/>
                         </nav>
                     </div>
-                    {this.props.width >= 600 && <div className={classes.right} style={{
-                        // height: rightHeight
-                    }}>
+                )}
+
+                detail={() => (
+                    <div>
                         <Route
                             path={`${this.props.match.path}/:id([0-9]+)`}
                             exact
@@ -113,15 +89,12 @@ class Workers extends React.Component {
                             )}
                         />
                         {firstId && <Route exact path={`${this.props.match.path}`} render={() => {
-                            return <Redirect to={`${this.props.match.path}/${firstId}`} />
+                            return <Redirect to={`${this.props.match.path}/${firstId}`}/>
                         }}/>}
-
-                    </div>}
-                </div>
-            </div>
+                    </div>
+                )}
+            />
         )
-
-
     }
 
 }
