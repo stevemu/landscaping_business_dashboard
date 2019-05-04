@@ -2,10 +2,9 @@ import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import {customersPath} from "../Dashboard";
 
-import PersonDetail from "../core/PersonDetail";
+import Person from "../core/Person";
 
-const styles = {
-};
+const styles = {};
 
 
 class Customer extends React.Component {
@@ -13,12 +12,10 @@ class Customer extends React.Component {
         let {classes} = this.props;
 
         return (
-            <div>
-                <PersonDetail
-                    {...this.props}
-                    redirectRoute={customersPath}
-                />
-            </div>
+            <Person
+                {...this.props}
+                redirectRoute={customersPath}
+            />
         )
 
     }

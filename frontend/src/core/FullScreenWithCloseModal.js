@@ -7,15 +7,6 @@ import FullScreenModal from "./FullScreenModal";
 
 
 const styles = theme => ({
-    paper: {
-        position: 'absolute',
-        width: "100%",
-        height: "100%",
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
-        outline: 'none',
-    },
     button: {
         margin: 3,
         alignSelf: "flex-end",

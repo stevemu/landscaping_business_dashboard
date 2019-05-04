@@ -9,10 +9,11 @@ const styles = theme => ({
         height: "100%",
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
+        padding: 8,
         outline: 'none',
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        // backgroundColor: "red"
     }
 });
 
