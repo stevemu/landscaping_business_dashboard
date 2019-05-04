@@ -4,9 +4,27 @@ import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
+import {
+    ThemeProvider,
+    MessageList,
+    MessageGroup,
+    Message,
+    MessageMedia,
+    MessageTitle,
+    MessageText,
+    MessageButtons,
+    MessageButton,
+    TextComposer,
+    Row,
+    IconButton,
+    AddIcon,
+    TextInput,
+    SendButton,
+    EmojiIcon
+} from '@livechat/ui-kit';
 import PersonDetail from "../core/PersonDetail";
 import ChatComponent from "../core/chat/ChatComponent";
+import withChatThemeProvider from '../../../core/withChatThemeProvider';
 
 const styles = theme => ({
     root: {
@@ -15,9 +33,10 @@ const styles = theme => ({
     }
 });
 
-function TabContainer({ children, dir }) {
+function TabContainer({children, dir}) {
     return (
-        <Typography component="div" dir={dir} style={{ padding: 8 * 3, height: window.innerHeight - 160 }}>
+        <Typography component="div" dir={dir}
+                    style={{padding: 8 * 3, height: window.innerHeight - 160}}>
             {children}
         </Typography>
     );
@@ -30,16 +49,16 @@ class Person extends React.Component {
     };
 
     handleChange = (event, value) => {
-        this.setState({ value });
+        this.setState({value});
     };
 
     handleChangeIndex = index => {
-        this.setState({ value: index });
+        this.setState({value: index});
     };
 
 
     render() {
-        const { classes, theme } = this.props;
+        const {classes, theme} = this.props;
 
         return (
             <div className={classes.root}>
@@ -49,8 +68,8 @@ class Person extends React.Component {
                     indicatorColor="primary"
                     textColor="primary"
                 >
-                    <Tab label="Detail" />
-                    <Tab label="Messages" />
+                    <Tab label="Detail"/>
+                    <Tab label="Messages"/>
                 </Tabs>
                 <SwipeableViews
                     axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -64,7 +83,7 @@ class Person extends React.Component {
                         />
                     </TabContainer>
                     <TabContainer dir={theme.direction}>
-                        <ChatComponent />
+                        <ChatComponent/>
                     </TabContainer>
                 </SwipeableViews>
             </div>
@@ -75,4 +94,4 @@ class Person extends React.Component {
 
 }
 
-export default withStyles(styles, { withTheme: true })(Person);
+export default withChatThemeProvider(withStyles(styles, {withTheme: true})(Person));

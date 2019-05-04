@@ -19,6 +19,8 @@ const styles = {
     },
     right: {
         // overflow: "scroll",
+        // position: "relative",
+        // paddingBottom: 10
     }
 };
 
