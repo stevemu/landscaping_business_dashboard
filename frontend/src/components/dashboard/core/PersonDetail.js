@@ -59,13 +59,14 @@ class PersonDetail extends React.Component {
                         lastName: this.lastNameField.value
                     };
 
-                    handleUpdatePerson(id, personData)
+                    handleUpdatePerson(id, personData);
+                    this.props.history.push(redirectRoute);
                 }}>
                     Update
                 </StyledButton>
                 <StyledButton variant="contained" className={classes.button} onClick={async () => {
                     await handleDeletePerson(id);
-                    this.props.history.push(customersPath);
+                    this.props.history.push(redirectRoute);
                 }}>Delete</StyledButton>
             </div>
         )

@@ -58,7 +58,7 @@ class Person extends React.Component {
 
 
     render() {
-        const {classes, theme} = this.props;
+        const {classes, theme, ...restPropsFromParent} = this.props;
 
         return (
             <div className={classes.root}>
@@ -78,7 +78,7 @@ class Person extends React.Component {
                 >
                     <TabContainer dir={theme.direction}>
                         <PersonDetail
-                            {...this.props}
+                            {...restPropsFromParent}
                             redirectRoute={this.props.redirectRoute}
                         />
                     </TabContainer>

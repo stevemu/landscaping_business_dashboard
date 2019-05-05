@@ -42,14 +42,12 @@ class Workers extends React.Component {
             return <div>Loading...</div>
         }
 
-        // console.log(people);
         let workers = filterUsersByWorkers(people);
         workers = filterByFields(workers, this.state.search);
         let firstId = getIdFromEntity(workers[0]);
 
         return (
             <MasterDetail
-                {...this.props}
                 master={() => (
                     <div>
                         <Button onClick={() => {

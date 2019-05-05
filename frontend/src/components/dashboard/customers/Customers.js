@@ -42,7 +42,7 @@ class Customers extends React.Component {
 
     render() {
 
-        const {classes, people} = this.props;
+        const {classes, people, ...rest} = this.props;
 
         if (people.length === 0) {
             return <div>Loading...</div>
@@ -55,7 +55,7 @@ class Customers extends React.Component {
 
         return (
             <MasterDetail
-                {...this.props}
+                {...rest}
                 master={() => (
                     <div>
                         <Button onClick={() => {

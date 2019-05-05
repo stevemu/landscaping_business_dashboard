@@ -27,7 +27,7 @@ const styles = {
 class MasterDetail extends React.Component {
 
     render() {
-        const {classes} = this.props;
+        const {classes, ...restProps} = this.props;
         let containerHeight = this.props.height - 120;
 
         return (
