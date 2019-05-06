@@ -42,6 +42,7 @@ class NewCustomer extends React.Component {
                         roles: ["ROLE_CUSTOMER"]
                     };
                     this.props.handleCreatePerson(person);
+                    this.props.handleClose();
                 }}>Create</StyledButton>
 
             </div>

@@ -19,7 +19,7 @@ class NewCustomerModal extends React.Component {
         const {classes} = this.props;
         return (
             <FullScreenWithCloseModal handleClose={this.handleClose}>
-                <NewCustomer {...this.props} />
+                <NewCustomer {...this.props} handleClose={this.handleClose} />
             </FullScreenWithCloseModal>
         );
     }
