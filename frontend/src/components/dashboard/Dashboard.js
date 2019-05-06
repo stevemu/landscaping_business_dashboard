@@ -139,7 +139,7 @@ class Dashboard extends Component {
         try {
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
-            // console.log(e);
+            console.error(e);
             // logout();
         }
 
@@ -152,7 +152,8 @@ class Dashboard extends Component {
             return people;
         } catch (e) {
             // logout();
-
+            console.error(e);
+            return [];
         }
 
     };
@@ -163,7 +164,7 @@ class Dashboard extends Component {
             this.setState({people});
         } catch (e) {
             // logout();
-
+            console.error(e);
         }
 
     };
@@ -175,7 +176,7 @@ class Dashboard extends Component {
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
             // logout();
-
+            console.error(e);
         }
 
 
@@ -195,7 +196,7 @@ class Dashboard extends Component {
             this.setState({people});
         } catch (e) {
             // logout();
-
+            console.error(e);
         }
 
     };
@@ -206,6 +207,7 @@ class Dashboard extends Component {
             await this.getPeopleFromApiAndPutToState();
         } catch (e) {
             // logout();
+            console.error(e);
         }
 
     };

@@ -68,6 +68,9 @@ export const getAuthed = async (url) => {
             "Authorization": "Bearer " + token
         }
     })
+    if (res.status !== 200) {
+        throw res;
+    }
     let j = await res.json();
     return j;
 }
@@ -84,6 +87,9 @@ export const postAuthed = async (url, json) => {
         },
         body: JSON.stringify(json)
     })
+    if (res.status !== 200) {
+        throw res;
+    }
     let j = await res.json();
     return j;
 }
@@ -99,6 +105,9 @@ export const putAuthed = async (url, json) => {
             "Authorization": "Bearer " + token
         }
     })
+    if (res.status !== 200) {
+        throw res;
+    }
     // console.log(res);
     let j = await res.json();
     return j;
@@ -116,6 +125,9 @@ export const patchAuthed = async (url, json) => {
         },
         body: JSON.stringify(json)
     })
+    if (res.status !== 200) {
+        throw res;
+    }
     // console.log(res);
     let j = await res.json();
     return j;
@@ -125,13 +137,16 @@ export const deleteAuthed = async (url) => {
     await renewAccessTokenIfGoingExpire();
 
     let token = getLocalToken();
-    await fetch(url, {
+    let res = await fetch(url, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + token
         }
     })
+    if (res.status !== 200) {
+        throw res;
+    }
 }
 
 export const getLocalToken = () => {
