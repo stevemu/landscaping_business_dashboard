@@ -57,6 +57,10 @@ export const renewAccessTokenIfGoingExpire = async () => {
     }
 };
 
+export const isErrorCode = (code) => {
+    return code < 200 || code > 299;
+};
+
 export const getAuthed = async (url) => {
     await renewAccessTokenIfGoingExpire();
 
@@ -68,7 +72,7 @@ export const getAuthed = async (url) => {
             "Authorization": "Bearer " + token
         }
     })
-    if (res.status !== 200) {
+    if (isErrorCode(res.status)) {
         throw res;
     }
     let j = await res.json();
@@ -87,7 +91,7 @@ export const postAuthed = async (url, json) => {
         },
         body: JSON.stringify(json)
     })
-    if (res.status !== 200) {
+    if (isErrorCode(res.status)) {
         throw res;
     }
     let j = await res.json();
@@ -105,7 +109,7 @@ export const putAuthed = async (url, json) => {
             "Authorization": "Bearer " + token
         }
     })
-    if (res.status !== 200) {
+    if (isErrorCode(res.status)) {
         throw res;
     }
     // console.log(res);
@@ -125,7 +129,7 @@ export const patchAuthed = async (url, json) => {
         },
         body: JSON.stringify(json)
     })
-    if (res.status !== 200) {
+    if (isErrorCode(res.status)) {
         throw res;
     }
     // console.log(res);
@@ -144,7 +148,7 @@ export const deleteAuthed = async (url) => {
             "Authorization": "Bearer " + token
         }
     })
-    if (res.status !== 200) {
+    if (isErrorCode(res.status)) {
         throw res;
     }
 }

@@ -38,7 +38,7 @@ class NewCustomer extends React.Component {
                 <StyledButton onClick={async () => {
                     let person = {
                         firstName: this.firstNameField.value,
-                        lastName: this.firstNameField.value,
+                        lastName: this.lastNameField.value,
                         roles: ["ROLE_CUSTOMER"]
                     };
                     this.props.handleCreatePerson(person);

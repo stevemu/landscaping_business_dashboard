@@ -17,7 +17,7 @@ const styles = {
 class NewWorker extends React.Component {
 
     render() {
-        let {classes, handleCreatePerson} = this.props;
+        let {classes} = this.props;
 
         return (
             <div>
@@ -39,7 +39,7 @@ class NewWorker extends React.Component {
                 <StyledButton className={classes.button} onClick={async () => {
                     let person = {
                         firstName: this.firstNameField.value,
-                        lastName: this.firstNameField.value,
+                        lastName: this.lastNameField.value,
                         roles: ["ROLE_WORKER"]
                     }
                     this.props.handleCreatePerson(person);
