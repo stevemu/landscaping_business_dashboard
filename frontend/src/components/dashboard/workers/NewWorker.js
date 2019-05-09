@@ -43,7 +43,8 @@ class NewWorker extends React.Component {
                         roles: ["ROLE_WORKER"]
                     }
                     this.props.handleCreatePerson(person);
-                    this.props.handleClose();
+                    if (this.props.handleClose)
+                        this.props.handleClose();
                 }}>Create</StyledButton>
 
             </div>

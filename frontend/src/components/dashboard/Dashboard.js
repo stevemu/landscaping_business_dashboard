@@ -253,7 +253,7 @@ class Dashboard extends Component {
                                 noWrap
                                 className={classes.title}
                             >
-                                Dashboard
+                                Dashboard1
                             </Typography>
                             <IconButton color="inherit" onClick={() => {
                                 logout();
