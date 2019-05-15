@@ -1,4 +1,4 @@
-package com.stevemu.rest;
+package com.stevemu.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +16,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController()
 @RequestMapping("/api")
-public class UserinfoController {
+public class Userinfo {
 
     @GetMapping("/me")
     public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails){

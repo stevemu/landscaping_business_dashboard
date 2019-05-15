@@ -1,21 +1,28 @@
 package com.stevemu;
 
-import com.stevemu.user.User;
-import com.stevemu.user.UserRepository;
+import com.stevemu.repositories.Message;
+import com.stevemu.repositories.MessageRepository;
+import com.stevemu.repositories.User;
+import com.stevemu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private MessageRepository messageRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -25,37 +32,48 @@ public class DatabaseLoader implements CommandLineRunner {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Autowired
-    public DatabaseLoader(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
     @Override
     public void run(String... args) throws Exception {
 
         createUsers();
     }
 
+    public void testModify() {
+
+        // modify
+//        Optional<User> admin = userRepository.findByUsername("a");
+//        User admin1 = admin.get();
+//
+//        admin1.setFirstName("John");
+//
+//        userRepository.save(admin1);
+//        System.out.println(admin11);
+    }
+
     public void createUsers() {
+        User admin = User.builder()
+                .username("a")
+                .firstName("Qi")
+                .lastName("Mu")
+                .password(this.passwordEncoder.encode("p"))
+                .roles(Arrays.asList("ROLE_ADMIN"))
+                .build();
+
+        User worker1 = User.builder()
+                .username("worker1")
+                .firstName("John1")
+                .lastName("Doe1")
+                .phone("7188641267")
+                .rating(5)
+                .password(this.passwordEncoder.encode("password"))
+                .roles(Arrays.asList("ROLE_WORKER"))
+                .build();
+
         List<User> users = Arrays.asList(
-                User.builder()
-                        .username("a")
-                        .firstName("Qi")
-                        .lastName("Mu")
-                        .password(this.passwordEncoder.encode("p"))
-                        .roles(Arrays.asList("ROLE_ADMIN"))
-                        .build(),
+                admin,
 
                 // workers
-                User.builder()
-                        .username("worker1")
-                        .firstName("John1")
-                        .lastName("Doe1")
-                        .phone("7188641267")
-                        .rating(5)
-                        .password(this.passwordEncoder.encode("password"))
-                        .roles(Arrays.asList("ROLE_WORKER"))
-                        .build(),
+                worker1,
                 User.builder()
                         .username("worker2")
                         .firstName("Aramb")
@@ -162,7 +180,25 @@ public class DatabaseLoader implements CommandLineRunner {
 //                        .build()
         );
 
-
         userRepository.saveAll(users);
+
+        List<Message> messages = Arrays.asList(
+                Message.builder()
+                        .date(new Date())
+                        .text("hello")
+                        .sender(admin)
+                        .recipient(worker1)
+                        .build(),
+                Message.builder()
+                        .date(new Date())
+                        .text("hello back")
+                        .sender(worker1)
+                        .recipient(admin)
+                        .build()
+        );
+
+        messageRepository.saveAll(messages);
+
+
     }
 }

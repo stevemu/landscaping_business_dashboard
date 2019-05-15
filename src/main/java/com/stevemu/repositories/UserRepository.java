@@ -1,8 +1,10 @@
-package com.stevemu.user;
+package com.stevemu.repositories;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +16,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findAllByOrderByRolesAscFirstNameAsc();
     List<User> findAllByOrderByRatingDesc();
+
 }

@@ -1,8 +1,10 @@
-package com.stevemu.rest;
+package com.stevemu.api;
 
 import com.fasterxml.uuid.Generators;
+import com.stevemu.api.core.AuthenticationRequest;
+import com.stevemu.api.core.RefreshTokenRequest;
 import com.stevemu.security.jwt.JwtTokenProvider;
-import com.stevemu.user.UserRepository;
+import com.stevemu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class Auth {
 
     // username: refreshToken
     private HashMap<String, String> refreshTokens = new HashMap<String, String>();
