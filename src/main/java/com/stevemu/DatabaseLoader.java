@@ -1,16 +1,22 @@
 package com.stevemu;
 
-import com.stevemu.repositories.Message;
-import com.stevemu.repositories.MessageRepository;
-import com.stevemu.repositories.User;
-import com.stevemu.repositories.UserRepository;
+import com.stevemu.repositories.*;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +31,11 @@ public class DatabaseLoader implements CommandLineRunner {
     private MessageRepository messageRepository;
 
     @Autowired
+    private JobRepository jobRepository;
+
+    @Autowired
     PasswordEncoder passwordEncoder;
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -35,7 +45,7 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        createUsers();
+        createObjs();
     }
 
     public void testModify() {
@@ -50,7 +60,8 @@ public class DatabaseLoader implements CommandLineRunner {
 //        System.out.println(admin11);
     }
 
-    public void createUsers() {
+//    @Transactional
+    public void createObjs() {
         User admin = User.builder()
                 .username("a")
                 .firstName("Qi")
@@ -58,146 +69,68 @@ public class DatabaseLoader implements CommandLineRunner {
                 .password(this.passwordEncoder.encode("p"))
                 .roles(Arrays.asList("ROLE_ADMIN"))
                 .build();
+        userRepository.save(admin);
 
         User worker1 = User.builder()
                 .username("worker1")
-                .firstName("John1")
-                .lastName("Doe1")
+                .firstName("Worker1")
+                .lastName("Harrison")
                 .phone("7188641267")
                 .rating(5)
                 .password(this.passwordEncoder.encode("password"))
                 .roles(Arrays.asList("ROLE_WORKER"))
                 .build();
+        userRepository.save(worker1);
 
-        List<User> users = Arrays.asList(
-                admin,
+        User customer1 = User.builder()
+                .username("customer1")
+                .firstName("Cus1")
+                .lastName("Ben")
+                .password(this.passwordEncoder.encode("password"))
+                .roles(Arrays.asList("ROLE_CUSTOMER"))
+                .build();
+        userRepository.save(customer1);
 
-                // workers
-                worker1,
-                User.builder()
-                        .username("worker2")
-                        .firstName("Aramb")
-                        .lastName("Doe")
-                        .rating(3)
-                        .password(this.passwordEncoder.encode("password"))
-                        .roles(Arrays.asList("ROLE_WORKER"))
-                        .build(),
-//                User.builder()
-//                        .username("johndoe3")
-//                        .firstName("Zeoo")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe4")
-//                        .firstName("Zeoo1")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe5")
-//                        .firstName("Zeoo2")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe6")
-//                        .firstName("Zeoo3")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe7")
-//                        .firstName("Zeoo4")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe8")
-//                        .firstName("Zeoo5")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe9")
-//                        .firstName("Zeoo6")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe10")
-//                        .firstName("Zeoo10")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
-//                User.builder()
-//                        .username("johndoe11")
-//                        .firstName("Zeoo11")
-//                        .lastName("Doe")
-//                        .rating(0)
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_WORKER"))
-//                        .build(),
+//        User customer2 = User.builder()
+//                .username("customer2")
+//                .firstName("Jane2")
+//                .lastName("Doe")
+//                .password(this.passwordEncoder.encode("password"))
+//                .roles(Arrays.asList("ROLE_CUSTOMER"))
+//                .build();
+//        userRepository.save(customer2);
 
+        Message m1 = Message.builder()
+                .date(new Date())
+                .text("hello, I am admin")
+                .sender(admin)
+                .recipient(worker1)
+                .build();
+        messageRepository.save(m1);
 
-                // customers
-                User.builder()
-                        .username("customer1")
-                        .firstName("Jane1")
-                        .lastName("Doe")
-                        .password(this.passwordEncoder.encode("password"))
-                        .roles(Arrays.asList("ROLE_CUSTOMER"))
-                        .build(),
-                User.builder()
-                        .username("customer2")
-                        .firstName("Jane2")
-                        .lastName("Doe")
-                        .password(this.passwordEncoder.encode("password"))
-                        .roles(Arrays.asList("ROLE_CUSTOMER"))
-                        .build()
-//                User.builder()
-//                        .username("janedoe3")
-//                        .firstName("Jane3")
-//                        .lastName("Doe")
-//                        .password(this.passwordEncoder.encode("password"))
-//                        .roles(Arrays.asList("ROLE_CUSTOMER"))
-//                        .build()
-        );
+        Message m2 = Message.builder()
+                .date(new Date())
+                .text("hello back, I am worker 1")
+                .sender(worker1)
+                .recipient(admin)
+                .build();
+        messageRepository.save(m2);
 
-        userRepository.saveAll(users);
+        List<User> job1users = new ArrayList<>();
+        job1users.add(worker1);
+        job1users.add(customer1);
 
-        List<Message> messages = Arrays.asList(
-                Message.builder()
-                        .date(new Date())
-                        .text("hello")
-                        .sender(admin)
-                        .recipient(worker1)
-                        .build(),
-                Message.builder()
-                        .date(new Date())
-                        .text("hello back")
-                        .sender(worker1)
-                        .recipient(admin)
-                        .build()
-        );
+        Job job1 = Job.builder()
+                .title("job1")
+                .users(job1users)
+                .build();
+        jobRepository.save(job1);
 
-        messageRepository.saveAll(messages);
+        worker1.getJobs().add(job1);
+        userRepository.save(worker1);
+        customer1.getJobs().add(job1);
+        userRepository.save(customer1);
+
 
 
     }

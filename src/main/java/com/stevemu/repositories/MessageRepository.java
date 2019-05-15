@@ -2,6 +2,7 @@ package com.stevemu.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Component;
 
@@ -30,17 +31,14 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 //    @Query("select m from Message m where m.text = :text")
 //    List<Message> findByMessageText(@Param("text") String text);
 
+    // works
+//    @Query("select m from Message m")
+//    List<Message> getAllMessages();
 
-//    @Query("select m from Message m where m.User.id = :id")
-//    List<Message> findMessageByUserId(@Param("id") Integer id);
+    @Query("select m from Message m where m.sender.id = :user1Id and m.recipient.id = :user2Id or m.sender.id = :user2Id and m.recipient.id = :user1Id")
+    List<Message> getMessagesBetweenTwoUser(@Param("user1Id") Long user1Id, @Param("user2Id") Long user2Id);
 
 
-    // trying to do:
-//    @Query("select m from Message m where m.User.id = :id")
-//    List<Message> test(@Param("id") Integer id);
-
-    @Query("select m from Message m")
-    List<Message> getAllMessages();
 
     //maybe
     // create an endpoint for getting message authed user and a user id
