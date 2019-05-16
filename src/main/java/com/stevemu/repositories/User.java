@@ -18,6 +18,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -64,7 +65,7 @@ public class User implements UserDetails {
 //    private ZonedDateTime modificationTime;
 //
 //    @CreatedDate
-//    private ZonedDateTime creationTime;
+//    private Date createdDate;
 
 
     private String firstName;

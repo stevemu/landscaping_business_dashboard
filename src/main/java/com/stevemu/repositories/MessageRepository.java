@@ -11,14 +11,6 @@ import java.util.List;
 @RepositoryRestResource
 public interface MessageRepository extends CrudRepository<Message, Long> {
 
-    // create an endpoint for getting message between two user by Ids with spring data jpa
-
-    //    @Query("select t from Task t where t.user.id = :#{principal.id}")
-    //    List<Task> findAll();
-
-//    @Query("SELECT m FROM Message m WHERE m.sender = :#{userId}")
-//    List<Message> findByUserId(@Param("userId") String userId);
-
     // use sql - works
 //    @Query(value = "select * from messages where sender_id = 1", nativeQuery = true)
 //    List<Message> findByUserId(@Param("userId") String userId);
@@ -27,21 +19,9 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 //    @Query(value = "select * from messages where sender_id = :userId", nativeQuery = true)
 //    List<Message> findByUserId(@Param("userId") Integer userId);
 
-    // use jpql with variable - works
-//    @Query("select m from Message m where m.text = :text")
-//    List<Message> findByMessageText(@Param("text") String text);
-
-    // works
-//    @Query("select m from Message m")
-//    List<Message> getAllMessages();
-
-    @Query("select m from Message m where m.sender.id = :user1Id and m.recipient.id = :user2Id or m.sender.id = :user2Id and m.recipient.id = :user1Id")
+    @Query("select m from Message m where m.sender.id = ?1 and m.recipient.id = ?2 or m.sender.id = ?2 and m.recipient.id = ?1")
+//    @Query("select m from Message m where m.sender.id = ?1 and m.recipient.id = 2")
     List<Message> getMessagesBetweenTwoUser(@Param("user1Id") Long user1Id, @Param("user2Id") Long user2Id);
-
-
-
-    //maybe
-    // create an endpoint for getting message authed user and a user id
 
 
 }
