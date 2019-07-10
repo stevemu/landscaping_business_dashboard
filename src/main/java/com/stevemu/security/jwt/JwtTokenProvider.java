@@ -1,5 +1,7 @@
 package com.stevemu.security.jwt;
 
+import com.stevemu.repositories.User;
+import com.stevemu.repositories.UserRepository;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,9 @@ public class JwtTokenProvider {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -37,6 +42,9 @@ public class JwtTokenProvider {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);
         claims.put("username", username);
+        // save user id
+        User user = userRepository.findByUsername(username).get();
+        claims.put("id", user.getId());
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);

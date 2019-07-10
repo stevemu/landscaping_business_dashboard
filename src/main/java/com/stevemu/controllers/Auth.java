@@ -1,8 +1,8 @@
-package com.stevemu.api;
+package com.stevemu.controllers;
 
 import com.fasterxml.uuid.Generators;
-import com.stevemu.api.core.AuthenticationRequest;
-import com.stevemu.api.core.RefreshTokenRequest;
+import com.stevemu.controllers.core.AuthenticationRequest;
+import com.stevemu.controllers.core.RefreshTokenRequest;
 import com.stevemu.security.jwt.JwtTokenProvider;
 import com.stevemu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.stevemu.api;
+package com.stevemu.controllers;
 
 import com.stevemu.repositories.MessageRepository;
 import com.stevemu.security.jwt.JwtTokenProvider;
