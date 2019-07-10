@@ -1,5 +1,9 @@
 ## Business Dashboard for Roger's Landscaping Service 
 
+## Introduction
+
+This system is made as both a class project (in Boston University) with intention of solving Roger's business problems. This online dashboard is made for him so he can manage his workers and customers easier.
+
 ## Demo
 
 Url: https://staging-business-dashboard.stevemu.com
